@@ -633,10 +633,10 @@ namespace {
                 // If the path to queen is fully defended, assign a big bonus.
                 // Otherwise assign a smaller bonus if the block square is defended.
                 if (defendedSquares == squaresToQueen)
-                    k += 6;
+                    k += 8;
 
                 else if (defendedSquares & blockSq)
-                    k += 4;
+                    k += 6;
 
                 mbonus += k * rr, ebonus += k * rr;
             }
