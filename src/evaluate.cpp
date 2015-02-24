@@ -91,7 +91,7 @@ namespace {
   // Evaluation weights, indexed by evaluation term
   enum { Mobility, PawnStructure, PassedPawns, Space, KingSafety };
   const struct Weight { int mg, eg; } Weights[] = {
-    {289, 344}, {233, 201}, {221, 273}, {46, 0}, {322, 0}
+    {289, 344}, {233, 201}, {221, 273}, {46, 0}, {321, 0}
   };
 
   #define V(v) Value(v)
@@ -191,12 +191,12 @@ namespace {
   const int KingAttackWeights[] = { 0, 0, 7, 5, 4, 1 };
 
   // Bonuses for enemy's safe checks
-  const int QueenContactCheck = 89;
-  const int RookContactCheck  = 71;
-  const int QueenCheck        = 50;
-  const int RookCheck         = 37;
+  const int QueenContactCheck = 88;
+  const int RookContactCheck  = 72;
+  const int QueenCheck        = 51;
+  const int RookCheck         = 36;
   const int BishopCheck       = 6;
-  const int KnightCheck       = 14;
+  const int KnightCheck       = 16;
 
   // KingDanger[attackUnits] contains the actual king danger weighted
   // scores, indexed by a calculated integer number.
@@ -413,10 +413,10 @@ namespace {
         // number and types of the enemy's attacking pieces, the number of
         // attacked and undefended squares around our king and the quality of
         // the pawn shelter (current 'score' value).
-        attackUnits =  std::min(74, ei.kingAttackersCount[Them] * ei.kingAttackersWeight[Them])
-                     +  8 * ei.kingAdjacentZoneAttacksCount[Them]
-                     + 25 * popcount<Max15>(undefended)
-                     + 11 * (ei.pinnedPieces[Us] != 0)
+        attackUnits =  std::min(73, ei.kingAttackersCount[Them] * ei.kingAttackersWeight[Them])
+                     +  9 * ei.kingAdjacentZoneAttacksCount[Them]
+                     + 24 * popcount<Max15>(undefended)
+                     + 10 * (ei.pinnedPieces[Us] != 0)
                      - mg_value(score) / 8
                      - !pos.count<QUEEN>(Them) * 60;
 
@@ -917,8 +917,8 @@ namespace Eval {
 
   void init() {
 
-    const int MaxSlope = 8700;
-    const int Peak = 1280000;
+    const int MaxSlope = 9000;
+    const int Peak = 1274100;
     int t = 0;
 
     for (int i = 0; i < 400; ++i)
